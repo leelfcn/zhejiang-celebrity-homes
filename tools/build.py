@@ -434,8 +434,8 @@ def build_home(doc, spot_index):
                 "</ol></aside>")
     body.append("</section>")
 
-    body.append('<section class="chapter-grid" id="fence">')
-    body.append('<h2 class="sec-title">按地市翻阅</h2>')
+    body.append('<h2 class="sec-title" id="fence">按地市翻阅</h2>')
+    body.append('<section class="chapter-grid">')
     for num, _slug, name, fname, emoji in CHAPTERS[1:]:
         spots = [s for s in spot_index if s["num"] == num]
         free_cnt = sum(1 for s in spots if s["free"])
