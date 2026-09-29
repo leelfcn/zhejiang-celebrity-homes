@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全省速查 · 浙江名人故居亲子游攻略</title>
+<meta name="description" content="浙江名人故居全省速查表，支持搜索与多维筛选。">
+<meta property="og:title" content="全省速查">
+<meta property="og:description" content="浙江名人故居全省速查表，支持搜索与多维筛选。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">浙</span><span class="brand-txt">名人故居<em>亲子游攻略</em></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="目录">☰ 目录</button>
+    <nav class="topnav" id="topNav"><a class="nav-item" href="index.html"><span>🏠</span>总览与出行指南</a><a class="nav-item" href="01-hangzhou.html"><span>🏙️</span>杭州篇</a><a class="nav-item" href="02-shaoxing.html"><span>🎋</span>绍兴篇</a><a class="nav-item" href="03-ningbo.html"><span>⚓</span>宁波篇</a><a class="nav-item" href="04-jiaxing-huzhou.html"><span>🌾</span>嘉兴·湖州篇</a><a class="nav-item" href="05-jinhua.html"><span>🔥</span>金华篇</a><a class="nav-item" href="06-taizhou.html"><span>⛰️</span>台州篇</a><a class="nav-item" href="07-wenzhou.html"><span>🌊</span>温州篇</a><a class="nav-item" href="08-quzhou-lishui.html"><span>🏔️</span>衢州·丽水篇</a><a class="nav-item active" href="all.html"><span>🧭</span>全省速查</a></nav>
+  </div>
+</header>
+<div class="wrap layout">
+<nav class="crumb"><a href="index.html">总览</a> / <span>全省速查</span></nav>
+<header class="chap-head"><h1>全省 67 处速查表</h1><blockquote><p>支持关键词搜索、按地市 / 是否免费 / 周一是否闭馆筛选，点名称跳转完整介绍。</p></blockquote></header>
+<div class="filters">
+<input type="search" id="q" class="f-input" placeholder="搜名称、城市或名人，例如：鲁迅 / 免费 / 周一">
+<select id="f-city" class="f-select"><option value="">全部地市</option><option value="杭州">杭州</option><option value="绍兴">绍兴</option><option value="宁波">宁波</option><option value="嘉兴·湖州">嘉兴·湖州</option><option value="金华">金华</option><option value="台州">台州</option><option value="温州">温州</option><option value="衢州·丽水">衢州·丽水</option></select>
+<select id="f-ticket" class="f-select"><option value="">门票不限</option><option value="free">仅免费</option><option value="paid">仅收费</option></select>
+<select id="f-mon" class="f-select"><option value="">周一不限</option><option value="open">周一开放</option><option value="closed">周一闭馆</option><option value="unknown">周一待核实</option></select>
+<select id="f-book" class="f-select"><option value="">预约不限</option><option value="yes">仅需预约</option><option value="no">仅免预约</option></select>
+<button class="btn ghost" id="lucky" type="button">🎲 手气不错</button>
+<span class="f-count" id="count"></span>
+</div>
+<div class="table-wrap"><table class="grid-table" id="spotTable"><thead><tr><th>地市</th><th>名称</th><th>门票</th><th>开放时间</th><th>周一</th><th>时长</th><th>交通要点</th></tr></thead><tbody></tbody></table></div>
+<p class="empty-tip" id="emptyTip" hidden>没有符合条件的点位，换个关键词试试。</p>
+</div>
+<footer class="site-foot">
+  <div class="wrap">
+    <p>资料整理日期：2026 年 9 月 28 日 · 门票、开放时间、预约规则变动频繁，出行前请务必按《出行前确认清单》电话复核。</p>
+    <p class="muted">静态站点 · 由 <code>tools/build.py</code> 从 <code>source/*.md</code> 自动生成 · 无外部依赖</p>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+<script src="assets/data.js"></script><script src="assets/table.js"></script>
+</body>
+</html>
