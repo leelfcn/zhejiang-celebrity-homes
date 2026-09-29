@@ -434,8 +434,9 @@ def build_home(doc, spot_index):
                 "</ol></aside>")
     body.append("</section>")
 
+    body.append('<section class="chapter-block">')
     body.append('<h2 class="sec-title" id="fence">按地市翻阅</h2>')
-    body.append('<section class="chapter-grid">')
+    body.append('<div class="chapter-grid">')
     for num, _slug, name, fname, emoji in CHAPTERS[1:]:
         spots = [s for s in spot_index if s["num"] == num]
         free_cnt = sum(1 for s in spots if s["free"])
@@ -443,7 +444,7 @@ def build_home(doc, spot_index):
                     '<b>%s</b><span class="chap-meta">%d 处 · %d 处免费</span>'
                     '<span class="chap-more">查看 →</span></a>'
                     % (fname, emoji, name, len(spots), free_cnt))
-    body.append("</section>")
+    body.append("</div></section>")
 
     body.append('<article class="prose">')
     body.append(render_blocks([b for b in doc["intro"] if b[0] != "h2"]))

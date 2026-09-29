@@ -113,8 +113,13 @@ img{max-width:100%}
 }
 
 /* ---------- chapter cards ---------- */
-.sec-title{font-size:20px;margin:8px 0 14px}
-.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:0 0 34px}
+/* 「按地市翻阅」标题独立成行，8 张城市卡片另起一行排列 */
+.chapter-block{margin:6px 0 34px}
+.sec-title{display:block;width:100%;grid-column:1/-1;font-size:20px;margin:10px 0 16px}
+.chapter-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:14px;margin:0;clear:both;
+}
 .chap-card{
   display:flex;flex-direction:column;gap:2px;padding:16px 18px;border-radius:var(--radius);
   background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);
