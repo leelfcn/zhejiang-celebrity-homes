@@ -48,6 +48,9 @@ FIELD_ICON = {
         "建议时长": "⏱️", "亲子看点": "👀", "交通": "🚗", "停车": "🅿️",
         "电话": "☎️", "周边": "🍜", "推荐玩法": "🧭",
 }
+# 速查表要隐藏的列（仅隐藏显示，data.js 与徽标、筛选仍使用这些数据）
+HIDE_QUICK_COLUMNS = {"周一"}
+
 CITY_ALIAS = {
     "01": "杭州", "02": "绍兴", "03": "宁波", "04": "嘉兴·湖州",
     "05": "金华", "06": "台州", "07": "温州", "08": "衢州·丽水",
@@ -202,17 +205,21 @@ def render_blocks(blocks, start_h=2):
     return "\n".join(out)
 
 
-def render_table(rows):
+def render_table(rows, hide_cols=None):
+    """渲染 markdown 表格；hide_cols 里的列名只隐藏显示，不影响数据解析。"""
     if not rows:
         return ""
+    hide_cols = hide_cols or set()
     head, body = rows[0], rows[1:]
-    th = "".join("<th>%s</th>" % inline(c) for c in head)
+    keep = [i for i, h in enumerate(head) if h.strip() not in hide_cols]
+    th = "".join("<th>%s</th>" % inline(head[i]) for i in keep)
     trs = []
     for r in body:
         cells = []
-        for idx, c in enumerate(r):
-            key = head[idx] if idx < len(head) else ""
-            cells.append('<td data-label="%s">%s</td>' % (esc(key), inline(c)))
+        for i in keep:
+            key = head[i] if i < len(head) else ""
+            val = r[i] if i < len(r) else ""
+            cells.append('<td data-label="%s">%s</td>' % (esc(key), inline(val)))
         trs.append("<tr>%s</tr>" % "".join(cells))
     return ('<div class="table-wrap"><table class="grid-table">'
             "<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>" % (th, "".join(trs)))
@@ -486,7 +493,7 @@ def build_chapter(doc, spot_index):
     content = ['<div class="chap-body">']
     if doc["quick"]:
         content.append('<h2 id="quick">速查表</h2>')
-        content.append(render_table(doc["quick"]))
+        content.append(render_table(doc["quick"], hide_cols=HIDE_QUICK_COLUMNS))
     for s in spots:
         m = meta.get((num, s["idx"]), {})
         fields, extras = spot_fields(s)
@@ -591,7 +598,7 @@ def build_all(spot_index):
     main.append("</div>")
     main.append('<div class="table-wrap"><table class="grid-table" id="spotTable">'
                 "<thead><tr><th>地市</th><th>名称</th><th>门票</th><th>开放时间</th>"
-                "<th>周一</th><th>时长</th><th>交通要点</th></tr></thead>"
+                "<th>时长</th><th>交通要点</th></tr></thead>"
                 '<tbody></tbody></table></div>')
     main.append('<p class="empty-tip" id="emptyTip" hidden>没有符合条件的点位，换个关键词试试。</p>')
     return "\n".join(main)

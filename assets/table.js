@@ -40,11 +40,6 @@
       var ticket = s.free
         ? '<span class="badge free">免费</span>'
         : esc(s.ticket || '待核实');
-      var mon = s.monday_status === 'closed'
-        ? '<span class="badge warn">' + esc(s.monday) + '</span>'
-        : (s.monday_status === 'unknown'
-          ? '<span class="muted">' + esc(s.monday || '待核实') + '</span>'
-          : esc(s.monday));
       return '<tr>' +
         '<td data-label="地市">' + esc(s.city) + '</td>' +
         '<td data-label="名称"><a href="' + s.url + '">' + esc(s.name) + '</a>' +
@@ -53,7 +48,6 @@
           : (s.booking_level === 1 ? ' <span class="badge soft">凭证/预约</span>' : '')) + '</td>' +
         '<td data-label="门票">' + ticket + '</td>' +
         '<td data-label="开放时间">' + esc(s.hours) + '</td>' +
-        '<td data-label="周一">' + mon + '</td>' +
         '<td data-label="时长">' + esc(s.duration) + '</td>' +
         '<td data-label="交通要点">' + esc(s.traffic || s.addr) + '</td>' +
         '</tr>';
